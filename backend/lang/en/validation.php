@@ -1,0 +1,105 @@
+<?php
+
+/*
+ * Messages are shown next to their field, so they do not repeat the field's name.
+ * The web app's error summary adds the label itself.
+ */
+return [
+    'accepted' => 'Please confirm this.',
+    'after' => 'Must be after :date.',
+    'after_or_equal' => 'Must be on or after :date.',
+    'array' => 'This value is not valid.',
+    'before' => 'Must be before :date.',
+    'before_or_equal' => 'Must be on or before :date.',
+    'between' => [
+        'array' => 'Choose between :min and :max items.',
+        'file' => 'The file must be between :min and :max kilobytes.',
+        'numeric' => 'Must be between :min and :max.',
+        'string' => 'Must be between :min and :max characters.',
+    ],
+    'boolean' => 'Choose yes or no.',
+    'confirmed' => 'The two values do not match.',
+    'date' => 'Enter a valid date.',
+    'date_format' => 'Use the format :format.',
+    'decimal' => 'Use :decimal decimal places.',
+    'different' => 'Must be different from :other.',
+    'digits' => 'Must be :digits digits.',
+    'digits_between' => 'Must be between :min and :max digits.',
+    'distinct' => 'This value is repeated.',
+    'email' => 'Enter a valid email address.',
+    'exists' => 'This choice is not valid.',
+    'file' => 'Choose a file.',
+    'filled' => 'This field is required.',
+    'gt' => [
+        'numeric' => 'Must be greater than :value.',
+        'string' => 'Must be longer than :value characters.',
+        'array' => 'Choose more than :value items.',
+        'file' => 'The file must be larger than :value kilobytes.',
+    ],
+    'gte' => [
+        'numeric' => 'Must be at least :value.',
+        'string' => 'Must be at least :value characters.',
+        'array' => 'Choose at least :value items.',
+        'file' => 'The file must be at least :value kilobytes.',
+    ],
+    'image' => 'Choose an image.',
+    'in' => 'This choice is not valid.',
+    'integer' => 'Enter a whole number.',
+    'lt' => [
+        'numeric' => 'Must be less than :value.',
+        'string' => 'Must be shorter than :value characters.',
+        'array' => 'Choose fewer than :value items.',
+        'file' => 'The file must be smaller than :value kilobytes.',
+    ],
+    'lte' => [
+        'numeric' => 'Must be at most :value.',
+        'string' => 'Must be at most :value characters.',
+        'array' => 'Choose at most :value items.',
+        'file' => 'The file must be at most :value kilobytes.',
+    ],
+    'max' => [
+        'array' => 'Choose at most :max items.',
+        'file' => 'The file is too large (maximum :max kilobytes).',
+        'numeric' => 'Must be at most :max.',
+        'string' => 'Too long (maximum :max characters).',
+    ],
+    'mimes' => 'Allowed file types: :values.',
+    'mimetypes' => 'Allowed file types: :values.',
+    'min' => [
+        'array' => 'Choose at least :min items.',
+        'file' => 'The file must be at least :min kilobytes.',
+        'numeric' => 'Must be at least :min.',
+        'string' => 'Must be at least :min characters.',
+    ],
+    'numeric' => 'Enter a number.',
+    'present' => 'This field must be present.',
+    'prohibited' => 'This field is not allowed.',
+    'regex' => 'This format is not valid.',
+    'required' => 'This field is required.',
+    'required_if' => 'This field is required.',
+    'required_if_accepted' => 'This field is required.',
+    'required_unless' => 'This field is required.',
+    'required_with' => 'This field is required.',
+    'required_without' => 'This field is required.',
+    'same' => 'Must match :other.',
+    'size' => [
+        'array' => 'Choose exactly :size items.',
+        'file' => 'The file must be :size kilobytes.',
+        'numeric' => 'Must be :size.',
+        'string' => 'Must be :size characters.',
+    ],
+    'string' => 'Enter text.',
+    'timezone' => 'Choose a valid time zone.',
+    'unique' => 'This is already in use.',
+    'uploaded' => 'The upload failed. Try again.',
+    'url' => 'Enter a valid link.',
+    'uuid' => 'This value is not valid.',
+
+    'custom' => [
+        'email' => [
+            'unique' => 'An account with this email already exists.',
+        ],
+    ],
+
+    'attributes' => [],
+];

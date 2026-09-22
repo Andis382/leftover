@@ -1,0 +1,44 @@
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+
+# local dev ports used by the author's scripts
+.devports
+
+# Java backend
+backend/target/
+backend/storage/
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Laravel backend
+backend/vendor/
+backend/.env
+backend/.env.backup
+backend/.phpunit.result.cache
+backend/public/hot
+backend/public/storage
+backend/storage/*.key
+backend/storage/app/private/*
+backend/storage/logs/*
+backend/storage/framework/cache/data/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/storage/framework/testing/*
+backend/public/index.html
+backend/public/assets/
+backend/public/sw.js
+backend/public/workbox-*.js
+backend/public/manifest.webmanifest
+backend/public/registerSW.js
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/
+frontend/.eslintcache
+frontend/*.tsbuildinfo
+*.log

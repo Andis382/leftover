@@ -31,8 +31,12 @@ return [
             'app_secret' => env('WHATSAPP_APP_SECRET', ''),
             'verify_token' => env('WHATSAPP_VERIFY_TOKEN', ''),
             'api_version' => env('WHATSAPP_API_VERSION', 'v23.0'),
-            // template key => "approved_template_name|param1,param2"
-            'templates' => [],
+            // template key => "approved_template_name|param1,param2". Messages the business starts
+            // (the 04:00 plan, the closing reminder) need approved templates on the Cloud API.
+            'templates' => array_filter([
+                'bake_plan' => env('WHATSAPP_TEMPLATE_BAKE_PLAN'),
+                'count_reminder' => env('WHATSAPP_TEMPLATE_COUNT_REMINDER'),
+            ]),
         ],
     ],
 

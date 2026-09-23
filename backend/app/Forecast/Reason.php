@@ -16,6 +16,8 @@ final class Reason
 
     public const SOLD_OUT_OFTEN = 'soldOutOften';
 
+    public const SOLD_OUT_LATE = 'soldOutLate';
+
     public const LEFT_EACH = 'leftEach';
 
     public const LEFT_TWO = 'leftTwo';

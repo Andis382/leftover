@@ -212,6 +212,7 @@ final class InsightsService
             }
             $weekday = $first->date->isoWeekday();
             $latest = $soldOut->max(fn (DailyRecord $r) => ShopClock::minutes($r->sold_out_at));
+            $late = ForecastService::inLastHour($latest, $clock->closesMinute($weekday));
             $before = ForecastService::clock((intdiv($latest, 60) + 1) * 60);
             $params = [
                 'product' => $products[$first->product_id]->name,
@@ -225,11 +226,12 @@ final class InsightsService
                 'weekday' => $weekday,
                 'times' => $soldOut->count(),
                 'of' => $recent->count(),
-                'before' => $before,
-                'text' => trans('insights.pattern', $params, $locale),
+                'before' => $late ? null : $before,
+                'text' => trans($late ? 'insights.pattern_late' : 'insights.pattern', $params, $locale),
             ];
         }
-        usort($patterns, fn (array $a, array $b) => [$b['times'] / $b['of'], $a['before']] <=> [$a['times'] / $a['of'], $b['before']]);
+        // Early sell-outs first (the lost sales worth fixing), then the more frequent.
+        usort($patterns, fn (array $a, array $b) => [$a['before'] === null, $a['before'], $b['times'] / $b['of']] <=> [$b['before'] === null, $b['before'], $a['times'] / $a['of']]);
 
         return array_slice($patterns, 0, 8);
     }

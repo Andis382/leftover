@@ -223,6 +223,27 @@ class ForecastServiceTest extends TestCase
         $this->assertSame(['times' => 3, 'of' => 4, 'before' => '11:00'], $reason->params);
     }
 
+    public function test_an_afternoon_sell_out_pattern_names_the_hour(): void
+    {
+        $observations = [$this->day(1, 30, 0, '17:20'), $this->day(2, 30, 0, '16:05'), $this->day(3, 30, 2)];
+
+        $reason = $this->suggest(baseline: 30, observations: $observations, lastBaked: 30)->reason;
+
+        $this->assertSame(Reason::SOLD_OUT_OFTEN, $reason->code);
+        $this->assertSame('18:00', $reason->params['before']);
+    }
+
+    public function test_sell_outs_in_the_last_hour_are_not_dressed_up_as_early(): void
+    {
+        // closing is 19:00, so "before 19:00" would say nothing
+        $observations = [$this->day(1, 30, 0, '18:20'), $this->day(2, 30, 0, '18:40'), $this->day(3, 30, 2)];
+
+        $reason = $this->suggest(baseline: 30, observations: $observations, lastBaked: 30)->reason;
+
+        $this->assertSame(Reason::SOLD_OUT_LATE, $reason->code);
+        $this->assertSame(['times' => 2, 'of' => 3], $reason->params);
+    }
+
     public function test_a_steady_product_says_how_it_sold(): void
     {
         $observations = array_map(fn (int $w) => $this->day($w, baked: 30, left: 1), [1, 2, 3]);

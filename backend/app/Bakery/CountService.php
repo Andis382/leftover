@@ -6,6 +6,7 @@ use App\Models\DailyRecord;
 use App\Models\DayClosing;
 use App\Models\Product;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -44,7 +45,33 @@ final class CountService
             'skipReason' => $closing?->skip_reason,
             'items' => $items,
             'summary' => self::summarize($items),
+            'previous' => $date === $clock->today() ? $this->previousDay($clock, $date) : null,
         ];
+    }
+
+    /** The last open day before this one, so a forgotten count can be caught the next day. */
+    private function previousDay(ShopClock $clock, string $date): ?array
+    {
+        $day = CarbonImmutable::parse($date);
+        for ($back = 1; $back <= 7; $back++) {
+            $candidate = $day->subDays($back);
+            if (! $clock->isOpenOn($candidate->isoWeekday())) {
+                continue;
+            }
+            $key = $candidate->toDateString();
+            $records = DailyRecord::where('date', $key);
+            if (! (clone $records)->exists()) {
+                return null;
+            }
+
+            return [
+                'date' => $key,
+                'status' => DayClosing::where('date', $key)->value('status') ?? DayClosing::OPEN,
+                'counted' => $records->whereNotNull('left_qty')->count(),
+            ];
+        }
+
+        return null;
     }
 
     /** Saves one product's count. Selling out means nothing is left. */

@@ -13,6 +13,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 /**
  * Bake plans: a live preview for any day, fixed once generated (by the morning job, or the
@@ -85,7 +86,10 @@ final class PlanService
     /** The baker's "will bake" number. Null, or the suggestion itself, means "as suggested". */
     public function setWillBake(ShopClock $clock, string $date, Product $product, ?int $quantity, User $by): void
     {
-        $this->generate($clock, $date, $by);
+        $plan = $this->generate($clock, $date, $by);
+        if ($plan->baked_confirmed_at !== null) {
+            throw ValidationException::withMessages(['willBake' => [__('errors.baked_confirmed')]]);
+        }
         $record = DailyRecord::where('date', $date)->where('product_id', $product->id)->whereNotNull('planned_qty')->first();
         abort_if($record === null, 404, __('errors.not_in_plan'));
         $record->baked_qty = $quantity === $record->planned_qty ? null : $quantity;

@@ -7,6 +7,7 @@ return [
         'blended' => '{1} Vetëm një ditë e tillë e numëruar deri tani, e përzier me sasinë e zakonshme.|[2,*] Vetëm :count ditë të tilla të numëruara deri tani, të përziera me sasinë e zakonshme.',
         'soldOut' => 'Mbaroi në :time :when.',
         'soldOutOften' => 'Mbaroi para orës :before në :times nga :of :weekdays e fundit.',
+        'soldOutLate' => 'Mbaroi në orën e fundit para mbylljes në :times nga :of :weekdays e fundit.',
         'leftEach' => 'Mbetën nga :left copë në secilën nga dy :weekdays e fundit.',
         'leftTwo' => 'Mbetën :recent dhe :before copë dy :weekdays e fundit.',
         'leftLast' => 'Mbetën :left copë :when.',

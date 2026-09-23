@@ -80,6 +80,10 @@ class PlanApiTest extends BakeryTestCase
             ->assertOk()
             ->assertJsonPath('bakedConfirmedBy', $this->owner->name)
             ->assertJsonPath('rows.0.willBake', 28);
+
+        $this->putJson("/api/plans/2026-09-22/items/{$this->bread->id}", ['willBake' => 40])
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['willBake']);
     }
 
     public function test_the_plan_goes_to_whatsapp_in_the_bakers_language(): void

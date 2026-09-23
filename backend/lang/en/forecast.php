@@ -7,6 +7,7 @@ return [
         'blended' => '{1} Only one counted :name so far, mixed with your usual number.|[2,*] Only :count counted :weekdays so far, mixed with your usual number.',
         'soldOut' => 'Sold out by :time :when.',
         'soldOutOften' => 'Sold out before :before on :times of the last :of :weekdays.',
+        'soldOutLate' => 'Sold out in the last hour on :times of the last :of :weekdays.',
         'leftEach' => ':left left over on each of the last two :weekdays.',
         'leftTwo' => ':recent and :before left over on the last two :weekdays.',
         'leftLast' => ':left left over :when.',

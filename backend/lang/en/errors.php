@@ -12,6 +12,7 @@ return [
     'day_skipped' => 'This day was skipped. Undo the skip to count it.',
     'day_in_future' => 'That day has not happened yet.',
     'day_in_past' => 'That day is over, so its plan can no longer change.',
+    'baked_confirmed' => 'Baking for that day is already confirmed. Correct the numbers on This morning.',
     'more_than_baked' => 'More than was baked (:baked).',
     'nothing_counted' => 'Count at least one product, or skip the day.',
     'closes_before_opens' => 'Closing must be after opening.',

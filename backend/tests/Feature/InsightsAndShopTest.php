@@ -51,6 +51,23 @@ class InsightsAndShopTest extends BakeryTestCase
             ->assertJsonPath('patterns.0.text', 'Simite me susam sold out before 11:00 on 3 of the last 4 Saturdays.');
     }
 
+    public function test_sell_outs_near_closing_are_listed_after_the_early_ones(): void
+    {
+        foreach (['2026-09-19' => '10:40', '2026-09-12' => '10:05'] as $date => $time) {
+            $this->record($date, 40, 0, $time);
+        }
+        $bread = $this->product(['name' => 'Bukë e bardhë']);
+        foreach (['2026-09-18' => '18:30', '2026-09-11' => '18:45'] as $date => $time) {
+            DailyRecord::create(['organization_id' => $this->org->id, 'product_id' => $bread->id, 'date' => $date, 'planned_qty' => 50, 'left_qty' => 0, 'sold_out_at' => $time]);
+        }
+
+        $this->actingAs($this->owner)->getJson('/api/insights?days=30')
+            ->assertOk()
+            ->assertJsonPath('patterns.0.before', '11:00')
+            ->assertJsonPath('patterns.1.before', null)
+            ->assertJsonPath('patterns.1.text', 'Bukë e bardhë sold out in the last hour on 2 of the last 2 Fridays.');
+    }
+
     public function test_insights_and_shop_settings_are_for_the_owner(): void
     {
         $staff = $this->staff();

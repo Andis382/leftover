@@ -49,6 +49,14 @@ class PlanWordingTest extends TestCase
         $this->assertSame('Mbaroi në 10:20 të shtunën e kaluar.', ReasonText::render($soldOut, 6, 'sq'));
     }
 
+    public function test_late_sell_outs_are_phrased_by_the_hour_before_closing(): void
+    {
+        $late = new Reason(Reason::SOLD_OUT_LATE, ['times' => 3, 'of' => 4]);
+
+        $this->assertSame('Sold out in the last hour on 3 of the last 4 Wednesdays.', ReasonText::render($late, 3, 'en'));
+        $this->assertSame('Mbaroi në orën e fundit para mbylljes në 3 nga 4 të mërkurat e fundit.', ReasonText::render($late, 3, 'sq'));
+    }
+
     public function test_an_older_day_is_named_by_its_date(): void
     {
         $reason = new Reason(Reason::LEFT_LAST, ['left' => 9, 'weeksAgo' => 2, 'date' => '2026-09-07']);

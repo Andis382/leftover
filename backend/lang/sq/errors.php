@@ -12,6 +12,7 @@ return [
     'day_skipped' => 'Kjo ditë u anashkalua. Anuloni anashkalimin për ta numëruar.',
     'day_in_future' => 'Ajo ditë nuk ka ardhur ende.',
     'day_in_past' => 'Ajo ditë ka kaluar, prandaj plani i saj nuk ndryshon më.',
+    'baked_confirmed' => 'Pjekja për atë ditë është konfirmuar. Korrigjoni numrat te Sot në mëngjes.',
     'more_than_baked' => 'Më shumë se sa u poq (:baked).',
     'nothing_counted' => 'Numëroni të paktën një produkt, ose anashkaloni ditën.',
     'closes_before_opens' => 'Mbyllja duhet të jetë pas hapjes.',

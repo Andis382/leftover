@@ -161,12 +161,12 @@ final class ForecastService
         $soldOut = array_values(array_filter($recent, fn (Observation $o) => $o->soldOut()));
         if (count($soldOut) >= 2) {
             $latestMinute = max(array_map(fn (Observation $o) => $o->soldOutMinute, $soldOut));
+            $counts = ['times' => count($soldOut), 'of' => count($recent)];
+            if (self::inLastHour($latestMinute, $recent[0]->closesMinute)) {
+                return new Reason(Reason::SOLD_OUT_LATE, $counts);
+            }
 
-            return new Reason(Reason::SOLD_OUT_OFTEN, [
-                'times' => count($soldOut),
-                'of' => count($recent),
-                'before' => self::clock((intdiv($latestMinute, 60) + 1) * 60),
-            ]);
+            return new Reason(Reason::SOLD_OUT_OFTEN, $counts + ['before' => self::clock((intdiv($latestMinute, 60) + 1) * 60)]);
         }
         $latest = $observations[0];
         if ($latest->soldOut()) {
@@ -212,6 +212,12 @@ final class ForecastService
         $days = (int) (new DateTimeImmutable($from))->diff(new DateTimeImmutable($to))->days;
 
         return max(1, intdiv($days, 7));
+    }
+
+    /** A sell-out in the last hour before closing: "before 21:00" would say nothing there. */
+    public static function inLastHour(int $minute, ?int $closesMinute): bool
+    {
+        return $closesMinute !== null && $minute >= $closesMinute - 60;
     }
 
     public static function clock(int $minute): string

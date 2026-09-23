@@ -15,6 +15,6 @@ class InsightsController extends Controller
         $data = $request->validate(['days' => ['nullable', 'integer', Rule::in([7, 30])]]);
         $clock = ShopClock::for($request->user()->organization);
 
-        return response()->json($insights->build($clock, (int) ($data['days'] ?? 7), app()->getLocale()));
+        return response()->json($insights->build($clock, (int) ($data['days'] ?? 30), app()->getLocale()));
     }
 }

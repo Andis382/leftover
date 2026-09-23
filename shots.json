@@ -1,0 +1,15 @@
+{
+  "email": "demo@leftover.test",
+  "password": "demo1234",
+  "pages": [
+    { "name": "login", "path": "/login", "auth": false },
+    { "name": "count", "path": "/count", "wait": 1200 },
+    { "name": "plan", "path": "/plan/2026-09-24", "wait": 1200 },
+    { "name": "morning", "path": "/morning", "wait": 1000 },
+    { "name": "insights", "path": "/insights", "wait": 1400 },
+    { "name": "products", "path": "/products", "wait": 1000 },
+    { "name": "sheet", "path": "/plan/2026-09-24/print?print=0", "wait": 1200, "fullPage": true, "desktopOnly": true },
+    { "name": "settings", "path": "/settings", "wait": 1200, "fullPage": true, "desktopOnly": true },
+    { "name": "messages", "path": "/messages", "wait": 1000 }
+  ]
+}

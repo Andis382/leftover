@@ -1,0 +1,141 @@
+/*
+ * Design tokens. Screens use only these semantic names, never raw colours.
+ * Leftover: an early-morning bakery. Crust and terracotta, a wheat accent, cream paper,
+ * and a dark-crust band that stays readable at 4 a.m. and in bright shop light.
+ */
+:root {
+  /* Typography */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+
+  /* Brand ramp: crust and terracotta */
+  --brand-50: #fdf4ee;
+  --brand-100: #fae4d4;
+  --brand-200: #f4c6a6;
+  --brand-300: #eba173;
+  --brand-400: #df7a44;
+  --brand-500: #d0652b;
+  --brand-600: #c2551f;
+  --brand-700: #a0431a;
+  --brand-800: #7f371a;
+  --brand-900: #672f18;
+
+  /* Wheat */
+  --accent-300: #f3d58a;
+  --accent-400: #eec765;
+  --accent-500: #e9b949;
+  --accent-600: #d19b27;
+
+  /* Neutrals: flour and oven-warm browns */
+  --gray-25: #fffdfa;
+  --gray-50: #faf6f0;
+  --gray-100: #f2ebe1;
+  --gray-200: #e6dccf;
+  --gray-300: #d2c4b2;
+  --gray-400: #ad9c88;
+  --gray-500: #85745f;
+  --gray-600: #66574a;
+  --gray-700: #4b4037;
+  --gray-800: #322a24;
+  --gray-900: #211b16;
+
+  /* Semantic surfaces */
+  --bg: #faf6f0;
+  --surface: #fffdf9;
+  --surface-muted: #fbf7f1;
+  --surface-sunken: #f3ece2;
+  --surface-hover: #fdf8f2;
+  --paper: #fffaf1;
+  --border: rgb(70 40 18 / 0.09);
+  --border-strong: rgb(70 40 18 / 0.18);
+
+  --text: #241a13;
+  --text-muted: var(--gray-600);
+  --text-subtle: var(--gray-500);
+  --text-inverse: #fff8ee;
+  --text-inverse-muted: rgb(255 244 228 / 0.74);
+
+  --primary: var(--brand-600);
+  --primary-hover: var(--brand-700);
+  --primary-strong: var(--brand-800);
+  --primary-soft: var(--brand-50);
+  --primary-soft-border: var(--brand-100);
+  --primary-soft-text: var(--brand-700);
+  --on-primary: #ffffff;
+
+  --accent: var(--accent-500);
+  --accent-soft: #fdf3d8;
+  --accent-soft-text: #7a5410;
+
+  --success: #3f7d3a;
+  --success-soft: #edf5e8;
+  --success-text: #2f6129;
+  --warning: #b7791f;
+  --warning-soft: #fdf3dc;
+  --warning-text: #7c5210;
+  --danger: #b42342;
+  --danger-hover: #971c37;
+  --danger-soft: #fbe9ee;
+  --danger-text: #8f1b35;
+  --info: #2f6f8f;
+  --info-soft: #e8f2f6;
+  --info-text: #235a75;
+
+  /* What the charts mean: what sold, what was left, what could not be counted */
+  --chart-sold: #e2c07a;
+  --chart-left: var(--brand-600);
+  --chart-grid: rgb(70 40 18 / 0.1);
+
+  /* A WhatsApp conversation, for message previews */
+  --chat-bg: #efe6d8;
+  --chat-bubble: #dcf5c9;
+  --chat-text: #1f2a1a;
+  --chat-meta: #5f7157;
+
+  --focus-ring: color-mix(in srgb, var(--brand-500) 40%, transparent);
+
+  /* The dark crust band at the top of every screen */
+  --header-from: #2b160c;
+  --header-via: #4a2512;
+  --header-to: #6e3a1b;
+  --header-text: #fff8ee;
+  --header-glow: rgb(233 185 73 / 0.24);
+
+  /* Elevation: a tight contact shadow plus a soft, warm ambient one */
+  --shadow-xs: 0 1px 2px rgb(60 30 10 / 0.06);
+  --shadow-sm: 0 1px 2px rgb(60 30 10 / 0.07), 0 1px 3px rgb(60 30 10 / 0.1);
+  --shadow-md: 0 1px 2px rgb(60 30 10 / 0.06), 0 4px 12px -2px rgb(60 30 10 / 0.1);
+  --shadow-lg: 0 2px 4px -2px rgb(60 30 10 / 0.07), 0 14px 28px -8px rgb(60 30 10 / 0.18);
+  --shadow-xl: 0 4px 8px -4px rgb(60 30 10 / 0.08), 0 26px 50px -14px rgb(60 30 10 / 0.3);
+  --highlight: inset 0 1px 0 rgb(255 255 255 / 0.8);
+  --primary-shadow:
+    0 1px 2px rgb(60 30 10 / 0.18),
+    0 8px 18px -8px color-mix(in srgb, var(--brand-600) 80%, transparent);
+
+  /* Shape */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration: 160ms;
+
+  /* Layout */
+  --tap: 48px;
+  --content-max: 1160px;
+  --gutter: clamp(16px, 3.5vw, 32px);
+  --bottom-nav-h: 68px;
+}
